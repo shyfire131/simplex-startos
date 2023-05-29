@@ -1,0 +1,3 @@
+[submodule "smp-server"]
+	path = smp-server
+	url = git@github.com:simplex-chat/simplexmq.git
