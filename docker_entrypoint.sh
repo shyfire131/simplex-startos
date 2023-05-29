@@ -3,6 +3,7 @@ confd="/etc/opt/simplex"
 logd="/var/opt/simplex/"
 
 export ADDR="0.0.0.0"
+export PASS=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 15) #set a 15 digit server password. See the comments in smp-server.ini for a description of what this does
 
 # Check if server has been initialized
 if [ ! -f "$confd/smp-server.ini" ]; then
@@ -16,6 +17,12 @@ if [ ! -f "$confd/smp-server.ini" ]; then
       esac
       ;;
     *) set -- --ip "$ADDR" ;;
+  esac
+
+  # Optionally, set password
+  case "$PASS" in
+    '') set -- "$@" --no-password ;;
+    *) set -- "$@" --password "$PASS" ;;
   esac
 
   # And init certificates and configs
