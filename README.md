@@ -1,4 +1,8 @@
-# Wrapper for hello-world
+# Wrapper for SimplexMQ 
+
+SimpleX is a highly secure and sovereign messenger. 
+
+We are currently 
 
 Hello World is a simple, minimal project that serves as a template for creating a service that runs on embassyOS. This repository creates the `s9pk` package that is installed to run `hello-world` on [embassyOS](https://github.com/Start9Labs/embassy-os/). Learn more about service packaging in the [Developer Docs](https://start9.com/latest/developer-docs/).
 
@@ -69,7 +73,22 @@ git submodule update --init --recursive
 
 ## Building
 
-To build the `hello-world` package for all platforms using embassy-sdk version >=0.3.3, run the following command:
+It is currently not possible to build the `SimpleXMQ` package for all platforms using embassy-sdk and directly from SimpleX's Docker Hub. This is because, as of 2023-05-30, SimpleX only has amd64 images on Docker Hub. The procedure to build from source is therefore as follows:
+
+- Find someone with a beefy ARM machine such as an M1 or M2 Mac
+- Check out the SimpleXMQ repo - git@github.com:simplex-chat/simplexmq.git
+- Build the docker image using their instructions, which, as of writing, was `DOCKER_BUILDKIT=1 docker buildx build --platform linux/arm64 -t shyfire131/smp-server:arm --build-arg APP="smp-server" --build-arg APP_PORT="5223" . --push`
+- Then, mirror the official AMD64 image as follows:
+```
+docker pull simplexchat/smp-server
+docker tag simplexchat/smp-server <your-dockerhub-username>/smp-server:amd64
+docker push <your-dockerhub-username>/smp-server:amd64
+```
+- This should have created a multi-architecture image for you on Docker Hub. If it did not, follow these steps:
+```
+docker manifest create <your-dockerhub-username>/smp-server:latest <your-dockerhub-username>/smp-server:arm <your-dockerhub-username>/smp-server:amd64
+docker manifest push <your-dockerhub-username>/smp-server:latest
+```
 
 ```
 make

@@ -1,4 +1,4 @@
-FROM simplexchat/smp-server
+FROM shyfire131/smp-server
 
 # Open app listening port
 ARG APP_PORT
