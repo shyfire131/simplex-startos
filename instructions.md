@@ -1,5 +1,7 @@
-# Instructions for Hello World
+# Instructions for SimplexMQ
 
-Instructions go here. These appear to the user in the UI on the Service page under **Instructions**.
+TODO: flesh out once function polish is done
 
-You are allowed to include basic [Markdown formatting](https://www.markdownguide.org/basic-syntax).
+- How to install mobile app
+- How to point mobile app at embassy (optionally delete others?) 
+- XFTP server?

@@ -1,4 +1,12 @@
 #!/usr/bin/env sh
+_term() { 
+  echo "Caught SIGTERM signal!" 
+  kill -TERM "$filebrowser_process" 2>/dev/null
+}
+
+apt-get install tini
+
+
 confd="/etc/opt/simplex"
 logd="/var/opt/simplex/"
 
@@ -32,6 +40,26 @@ fi
 # Backup store log just in case
 [ -f "$logd/smp-server-store.log" ] && cp "$logd"/smp-server-store.log "$logd"/smp-server-store.log."$(date +'%FT%T')"
 
+TOR_ADDRESS=$(sed -n -e 's/^tor-address: \(.*\)/\1/p' /root/start9/config.yaml)
+SERVER_FINGERPRINT=$(cat /etc/opt/simplex/fingerprint)
+
+SMP_URL="smp://$SERVER_FINGERPRINT:$PASS@$TOR_ADDRESS"
+
+mkdir -p /root/start9
+echo 'version: 2' > /root/start9/stats.yaml
+echo 'data:' >> /root/start9/stats.yaml
+echo '  Server Address:' >> /root/start9/stats.yaml
+echo '    type: string' >> /root/start9/stats.yaml
+echo '    value: "'"$SMP_URL"'"' >> /root/start9/stats.yaml
+echo '    description: This is your randomly-generated, default password. TODO long description here.' >> /root/start9/stats.yaml
+echo '    copyable: true' >> /root/start9/stats.yaml
+echo '    masked: true' >> /root/start9/stats.yaml
+echo '    qr: true' >> /root/start9/stats.yaml
+echo 'Echo Test...'
+echo $TOR_ADDRESS
+echo $SERVER_FINGERPRINT
+echo $SMP_URL
+
 # Finally, run smp-sever. Notice that "exec" here is important:
 # smp-server replaces our helper script, so that it can catch INT signal
-exec smp-server start +RTS -N -RTS
+exec tini -s -- smp-server start +RTS -N -RTS

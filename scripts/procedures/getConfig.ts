@@ -2,4 +2,13 @@
 
 import { compat, types as T } from "../deps.ts";
 
-export const getConfig: T.ExpectedExports.getConfig = compat.getConfig({});
+export const getConfig: T.ExpectedExports.getConfig = compat.getConfig({
+    "tor-address": {
+      "name": "Tor Address",
+      "description": "The Tor address for SMP Server",
+      "type": "pointer",
+      "subtype": "package",
+      "package-id": "simplexmq",
+      "target": "tor-address",
+      "interface": "main"
+    }});

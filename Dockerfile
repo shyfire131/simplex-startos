@@ -1,8 +1,6 @@
 FROM shyfire131/smp-server
 
 # Open app listening port
-ARG APP_PORT
-#EXPOSE $APP_PORT
 EXPOSE 5223
 
 # simplexmq requires using SIGINT to correctly preserve undelivered messages and restore them on restart

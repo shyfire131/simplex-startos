@@ -1,10 +1,8 @@
-# Example written in yaml (toml and json are also acceptable)
-
 # The package identifier used by the OS. This must be unique amongst all other known packages
 id: simplexmq
  # A human readable service title
 title: "SimpleXMQ"
-# Service version - accepts up to four digits, where the last confirms to revisions necessary for EmbassyOS - see documentation: https://github.com/Start9Labs/emver-rs. This value will change with each release of the service. 
+# Service version - accepts up to four digits, where the last confirms to revisions necessary for StartOS - see documentation: https://github.com/Start9Labs/emver-rs. This value will change with each release of the service. 
 version: 5.1.0
 # Release notes for the update - can be a string, paragraph or URL
 release-notes: "Initial release for StartOS"
@@ -20,13 +18,13 @@ support-site: "https://github.com/simplex-chat/simplexmq/issues"
 marketing-site: "https://simplex.chat/"
 # The series of commands to build the project into an s9pk for arm64/v8. In this case we are using a Makefile with the simple build command "make".
 build: ["make"]
-# Human readable descriptors for the service. These are used throughout the EmbassyOS user interface, primarily in the marketplace.
+# Human readable descriptors for the service. These are used throughout the StartOS user interface, primarily in the marketplace.
 description:
   # This is the first description visible to the user in the marketplace.
-  short: Example service
+  short: An instant messenger without user IDs
   # This description will display with additional details in the service's individual marketplace page
   long: |
-    Hello World is a bare-bones service that launches a web interface to say "Hello World", and nothing more.
+    SimpleX is a chat client that radically improves your privacy. SimpleXMQ is the backend server that lets you control how people connect with you. 
 # These assets are static files necessary for packaging the service for Start9 (into an s9pk). Each value is a path to the specified asset. If an asset is missing from this list, or otherwise denoted, it will be defaulted to the values denoted below. 
 assets:
   # Default = LICENSE.md
@@ -35,22 +33,6 @@ assets:
   icon: icon.png
   # Default = INSTRUCTIONS.md
   instructions: instructions.md
-  # Default = image.tar
-  # docker-images: image.tar
-# ----- This section commented out until we support long-running containers -----
-# The main action for initializing the service. This can be script to utilize the eOS scripting apis, or docker.
-# main: 
-#   type: script
-# # Defines the containers needed to run the main and mounted volumes
-# containers:
-#   main:
-#     # Identifier for the main image volume, which will be used when other actions need to mount to this volume.
-#     image: main
-#     # Specifies where to mount the data volume(s), if there are any. Mounts for pointer dependency volumes are also denoted here. These are necessary if data needs to be read from / written to these volumes. 
-#     mounts:
-#       # Specifies where on the service's file system its persistence directory should be mounted prior to service startup
-#       main: /root
-# ----- END commented section -----
 main:
   # Docker is currently the only action implementation
   type: docker
@@ -66,9 +48,13 @@ main:
     main: /root
 # This is where health checks would be defined - see a more advanced example in https://github.com/Start9Labs/embassy-pages-wrapper
 health-checks: {}
-config: ~
-properties: ~
-#  type: script
+config: 
+  get:
+    type: script
+  set: 
+    type: script
+properties:
+  type: script
 # This denotes any data, asset, or pointer volumes that should be connected when the "docker run" command is invoked
 volumes:
   # This is the image where files from the project asset directory will go
@@ -86,18 +72,13 @@ interfaces:
     # Port mappings are from the external port to the internal container port
       port-mapping:
         5223: "5223"
-    # Port mappings are from the external port to the internal container port
-    # lan-config:
-    #   443:
-    #     ssl: true
-    #     internal: 80
     # Denotes if the service has a user interface to display
     ui: false
     # Denotes the protocol specifications used by this interface
     protocols:
       - tcp
 dependencies: {}
-# Specifies how backups should be run for this service. The default EmbassyOS provided option is to use the duplicity backup library on a system image (compat)
+# Specifies how backups should be run for this service. The default StartOS provided option is to use the duplicity backup library on a system image (compat)
 backup:
   create:
     # Currently, only docker actions are supported.
