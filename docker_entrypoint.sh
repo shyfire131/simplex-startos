@@ -35,13 +35,16 @@ if [ ! -f "$confd/smp-server.ini" ]; then
 
   # And init certificates and configs
   smp-server init -y -l "$@"
+
+  else
+    export PASS=$(grep -i "^create_password" $confd/smp-server.ini | awk -F ':' '{print $2}' | awk '{$1=$1};1')
 fi
 
 # Backup store log just in case
 [ -f "$logd/smp-server-store.log" ] && cp "$logd"/smp-server-store.log "$logd"/smp-server-store.log."$(date +'%FT%T')"
 
 TOR_ADDRESS=$(sed -n -e 's/^tor-address: \(.*\)/\1/p' /root/start9/config.yaml)
-SERVER_FINGERPRINT=$(cat /etc/opt/simplex/fingerprint)
+SERVER_FINGERPRINT=$(cat $confd/fingerprint)
 
 SMP_URL="smp://$SERVER_FINGERPRINT:$PASS@$TOR_ADDRESS"
 
