@@ -6,12 +6,10 @@ _term() {
 
 apt-get install tini
 
-
 confd="/etc/opt/simplex"
 logd="/var/opt/simplex/"
 
 export ADDR="0.0.0.0"
-export PASS=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 15) #set a 15 digit server password. See the comments in smp-server.ini for a description of what this does
 
 # Check if server has been initialized
 if [ ! -f "$confd/smp-server.ini" ]; then
@@ -26,6 +24,8 @@ if [ ! -f "$confd/smp-server.ini" ]; then
       ;;
     *) set -- --ip "$ADDR" ;;
   esac
+
+  export PASS=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 15) #set a 15 digit server password. See the comments in smp-server.ini for a description of what this does
 
   # Optionally, set password
   case "$PASS" in
@@ -55,10 +55,6 @@ echo '    description: This is your randomly-generated, default password. TODO l
 echo '    copyable: true' >> /root/start9/stats.yaml
 echo '    masked: true' >> /root/start9/stats.yaml
 echo '    qr: true' >> /root/start9/stats.yaml
-echo 'Echo Test...'
-echo $TOR_ADDRESS
-echo $SERVER_FINGERPRINT
-echo $SMP_URL
 
 # Finally, run smp-sever. Notice that "exec" here is important:
 # smp-server replaces our helper script, so that it can catch INT signal
