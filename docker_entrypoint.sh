@@ -1,40 +1,19 @@
 #!/usr/bin/env sh
-_term() { 
-  echo "Caught SIGTERM signal!" 
-  kill -TERM "$filebrowser_process" 2>/dev/null
-}
+
+set -e
 
 apt-get install -y tini netcat
 
 confd="/etc/opt/simplex"
 logd="/var/opt/simplex/"
 
-export ADDR="0.0.0.0"
-
-# Check if server has been initialized
+# Check if smp-server has been initialized
 if [ ! -f "$confd/smp-server.ini" ]; then
-  # If not, determine ip or domain
-  case "$ADDR" in
-    '') printf "Please specify \$ADDR environment variable.\n"; exit 1 ;;
-    *[a-zA-Z]*)
-      case "$ADDR" in
-        *:*) set -- --ip "$ADDR" ;;
-        *) set -- -n "$ADDR" ;;
-      esac
-      ;;
-    *) set -- --ip "$ADDR" ;;
-  esac
+  # Set a 15 digit server password. See the comments in smp-server.ini for a description of what this does
+  export PASS=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 15) 
 
-  export PASS=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 15) #set a 15 digit server password. See the comments in smp-server.ini for a description of what this does
-
-  # Optionally, set password
-  case "$PASS" in
-    '') set -- "$@" --no-password ;;
-    *) set -- "$@" --password "$PASS" ;;
-  esac
-
-  # And init certificates and configs
-  smp-server init -y -l "$@"
+  # Init certificates and configs
+  smp-server init -y -l --password $PASS
 
   else
     export PASS=$(grep -i "^create_password" $confd/smp-server.ini | awk -F ':' '{print $2}' | awk '{$1=$1};1')
@@ -49,15 +28,19 @@ SERVER_FINGERPRINT=$(cat $confd/fingerprint)
 SMP_URL="smp://$SERVER_FINGERPRINT:$PASS@$TOR_ADDRESS"
 
 mkdir -p /root/start9
-echo 'version: 2' > /root/start9/stats.yaml
-echo 'data:' >> /root/start9/stats.yaml
-echo '  Server Address:' >> /root/start9/stats.yaml
-echo '    type: string' >> /root/start9/stats.yaml
-echo '    value: "'"$SMP_URL"'"' >> /root/start9/stats.yaml
-echo '    description: This is your randomly-generated, default password. TODO long description here.' >> /root/start9/stats.yaml
-echo '    copyable: true' >> /root/start9/stats.yaml
-echo '    masked: true' >> /root/start9/stats.yaml
-echo '    qr: true' >> /root/start9/stats.yaml
+
+cat << EOF > /root/start9/stats.yaml
+---
+version: 2
+data:
+  Server Addres:
+    type: string
+    value: $SMP_URL
+    description: Your SMP Server address, used in client applications.
+    copyable: true
+    qr: true
+    masked: true
+EOF
 
 # Finally, run smp-sever. Notice that "exec" here is important:
 # smp-server replaces our helper script, so that it can catch INT signal
