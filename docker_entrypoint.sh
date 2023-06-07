@@ -4,7 +4,7 @@ _term() {
   kill -TERM "$filebrowser_process" 2>/dev/null
 }
 
-apt-get install tini
+apt-get install -y tini netcat
 
 confd="/etc/opt/simplex"
 logd="/var/opt/simplex/"

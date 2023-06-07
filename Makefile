@@ -39,11 +39,11 @@ rebranding:
 scripts/embassy.js: $(TS_FILES)
 	deno bundle scripts/embassy.ts scripts/embassy.js
 
-docker-images/x86_64.tar: Dockerfile docker_entrypoint.sh
+docker-images/x86_64.tar: Dockerfile docker_entrypoint.sh check-syn-ack.sh
 	mkdir -p docker-images
 	docker buildx build --tag start9/$(PKG_ID)/main:$(PKG_VERSION) --platform=linux/amd64 --build-arg PLATFORM=amd64 --build-arg APP="smp-server" --build-arg APP_PORT="5223" -o type=docker,dest=docker-images/x86_64.tar .
 
-docker-images/aarch64.tar: Dockerfile docker_entrypoint.sh
+docker-images/aarch64.tar: Dockerfile docker_entrypoint.sh check-syn-ack.sh
 	mkdir -p docker-images
 	docker buildx build --tag start9/$(PKG_ID)/main:$(PKG_VERSION) --platform=linux/arm64 --build-arg PLATFORM=arm64 --build-arg APP="smp-server" --build-arg APP_PORT="5223" -o type=docker,dest=docker-images/aarch64.tar .
 
