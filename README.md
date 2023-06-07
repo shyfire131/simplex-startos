@@ -2,81 +2,11 @@
 
 SimpleX is a highly secure and sovereign messenger. 
 
-We are currently 
+Currently the packaging process is somewhat involved. I was able to get support for ARM builds [merged](https://github.com/simplex-chat/simplexmq/pull/679), however as of 2023-06-07, SimpleX have an [open issue](https://github.com/simplex-chat/simplexmq/issues/740) for  not publishing ARM builds to Docker Hub. All of this is further complicated by the fact that Haskell cross compilation of SimpleXMQ is fairly broken - even using 30GB of RAM on an M1 Pro was not enough resources.
 
-Hello World is a simple, minimal project that serves as a template for creating a service that runs on embassyOS. This repository creates the `s9pk` package that is installed to run `hello-world` on [embassyOS](https://github.com/Start9Labs/embassy-os/). Learn more about service packaging in the [Developer Docs](https://start9.com/latest/developer-docs/).
+This wrapper therefore uses a multi-architecture Docker image hosted on my personal Docker Hub. This multi-architecture image can be created as follows:
 
-## Dependencies
-
-Install the system dependencies below to build this project by following the instructions in the provided links. You can also find detailed steps to setup your environment in the service packaging [documentation](https://github.com/Start9Labs/service-pipeline#development-environment).
-
-- [docker](https://docs.docker.com/get-docker)
-- [docker-buildx](https://docs.docker.com/buildx/working-with-buildx/)
-- [yq](https://mikefarah.gitbook.io/yq)
-- [deno](https://deno.land/)
-- [make](https://www.gnu.org/software/make/)
-- [embassy-sdk](https://github.com/Start9Labs/embassy-os/tree/master/backend)
-
-## Build environment
-Prepare your embassyOS build environment. In this example we are using Ubuntu 20.04.
-1. Install docker
-```
-curl -fsSL https://get.docker.com | bash
-sudo usermod -aG docker "$USER"
-exec sudo su -l $USER
-```
-2. Set buildx as the default builder
-```
-docker buildx install
-docker buildx create --use
-```
-3. Enable cross-arch emulated builds in docker
-```
-docker run --privileged --rm linuxkit/binfmt:v0.8
-```
-4. Install yq
-```
-sudo snap install yq
-```
-5. Install deno
-```
-sudo snap install deno
-```
-6. Install essentials build packages
-```
-sudo apt-get install -y build-essential openssl libssl-dev libc6-dev clang libclang-dev ca-certificates
-```
-7. Install Rust
-```
-curl https://sh.rustup.rs -sSf | sh
-# Choose nr 1 (default install)
-source $HOME/.cargo/env
-```
-8. Build and install embassy-sdk
-```
-cd ~/ && git clone --recursive https://github.com/Start9Labs/embassy-os.git
-cd embassy-os/backend/
-./install-sdk.sh
-embassy-sdk init
-```
-Now you are ready to build the `hello-world` package!
-
-## Cloning
-
-Clone the project locally:
-
-```
-git clone https://github.com/Start9Labs/hello-world-wrapper.git
-cd hello-world-wrapper
-git submodule update --init --recursive
-```
-
-## Building
-
-It is currently not possible to build the `SimpleXMQ` package for all platforms using embassy-sdk and directly from SimpleX's Docker Hub. This is because, as of 2023-05-30, SimpleX only has amd64 images on Docker Hub. The procedure to build from source is therefore as follows:
-
-- Find someone with a beefy ARM machine such as an M1 or M2 Mac
-- Check out the SimpleXMQ repo - git@github.com:simplex-chat/simplexmq.git
+- Check out the SimpleXMQ repo on an ARM machine  - git@github.com:simplex-chat/simplexmq.git
 - Build the docker image using their instructions, which, as of writing, was `DOCKER_BUILDKIT=1 docker buildx build --platform linux/arm64 -t shyfire131/smp-server:arm --build-arg APP="smp-server" --build-arg APP_PORT="5223" . --push`
 - Then, mirror the official AMD64 image as follows:
 ```
@@ -84,49 +14,30 @@ docker pull simplexchat/smp-server
 docker tag simplexchat/smp-server <your-dockerhub-username>/smp-server:amd64
 docker push <your-dockerhub-username>/smp-server:amd64
 ```
-- This should have created a multi-architecture image for you on Docker Hub. If it did not, follow these steps:
-```
-docker manifest create <your-dockerhub-username>/smp-server:latest <your-dockerhub-username>/smp-server:arm <your-dockerhub-username>/smp-server:amd64
-docker manifest push <your-dockerhub-username>/smp-server:latest
-```
+- At this point you need to do some manifest hacking:
+- `docker buildx imagetools create -t shyfire131/smp-server:latest shyfire131/smp-server:arm shyfire131/smp-server:amd6`
+
+You can then reference `shyfire131/smp-server` in your Dockerfile, of course replacing shyfire131 with your own username in all of the above.
+
+Other than that, building the .s9pk is fairly straightforward and doesn't need any special dependencies.
+## Cloning
+
+Clone the project locally:
 
 ```
+git clone git@github.com:shyfire131/startOS-simplexMQ-wrapper.git
+cd startOS-simplexMQ-wrapper
 make
 ```
 
-To build the `hello-world` package for a single platform using embassy-sdk version <=0.3.2, run:
+## Testing performed
 
-```
-# for amd64
-make ARCH=x86_64
-```
-or
-```
-# for arm64
-make ARCH=aarch64
-```
+[X] Smoke testing - DMs work on macOS, iOS and Android
+[X] Continuity testing - Server config persists across service restarts
+[X] DR testing - Backups restore successfully 
 
-## Installing (on embassyOS)
-
-Run the following commands to determine successful install:
-> :information_source: Change embassy-server-name.local to your Embassy address
-
-```
-embassy-cli auth login
-# Enter your embassy password
-embassy-cli --host https://embassy-server-name.local package install hello-world.s9pk
-```
-
-If you already have your `embassy-cli` config file setup with a default `host`, you can install simply by running:
-
-```
-make install
-```
-
-> **Tip:** You can also install the hello-world.s9pk using **Sideload Service** under the **System > Manage** section.
-
-### Verify Install
-
-Go to your Embassy Services page, select **Hello World**, configure and start the service. Then, verify its interfaces are accessible.
-
-**Done!** 
+## Roadmap
+[ ] Support for XFTP Server (sending large attachments, will either be a standalone Service or bundled once multi-container services are supported)
+[ ] Server statistics (`log_stats: on` in smp-server.ini)
+[ ] Clearnet support will obviously be a superpower once available
+[ ] Use official multi-architecture Docker Hub once SimpleX team fixes that
