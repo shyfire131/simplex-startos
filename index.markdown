@@ -54,7 +54,9 @@ This is a unique QR code that other people can use to connect to you.
 
 You can now share this contact address with other users over another trusted channel such as text message, email, etc. 
 
-Note that in this mode, only small (<8Mb) attachments will be sent over your StartOS server. If there is demand, I will add support for large files via SimpleX XFTP. Let me know!
+**Note:** sharing this initial out of band message is a core part of the SMP protocol, and is described in more detail here: [https://github.com/simplex-chat/simplexmq/blob/stable/protocol/simplex-messaging.md#out-of-band-messages](https://github.com/simplex-chat/simplexmq/blob/stable/protocol/simplex-messaging.md#out-of-band-messages)
+
+Also note that in this mode, only small (<8Mb) attachments will be sent over your StartOS server. If there is demand, I will add support for large files via SimpleX XFTP. Let me know!
 
 ## Advanced - Interoperability Mode
 
