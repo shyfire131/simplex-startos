@@ -28,7 +28,7 @@ However, we want to configure it like this:
 # Quickstart Guide - iOS/Android
 
 ## Initial Setup
-1. Download the relevant client by following a link on https://simplex.chat/
+1. Download the relevant client by following a link on [https://simplex.chat/](https://simplex.chat/)
 1. Set up your profile, but click on "Don't create address" (don't click "Create SimpleX address, this will create a receive queue for your DMs on SimpleX's servers which is what you don't want)
 1. Choose how you want to receive notifications
 1. Once in the app, click on your avatar in the top left, then click on "Network & Servers"
