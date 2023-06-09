@@ -3,3 +3,5 @@ _site
 .jekyll-cache
 .jekyll-metadata
 vendor
+/assets/.$explainer-source.drawio.dtmp
+/assets/.$explainer-source.drawio.bkp
