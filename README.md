@@ -8,7 +8,7 @@ Currently the packaging process is somewhat involved. I was able to get support 
 
 This wrapper therefore uses a multi-architecture Docker image hosted on my personal Docker Hub. This multi-architecture image can be created as follows:
 
-- Check out the SimpleXMQ repo on an ARM machine  - git@github.com:simplex-chat/simplexmq.git
+- Check out the SimpleXMQ repo on an ARM machine  - `git@github.com:simplex-chat/simplexmq.git`
 - Build the docker image using their instructions, which, as of writing, was `DOCKER_BUILDKIT=1 docker buildx build --platform linux/arm64 -t shyfire131/smp-server:arm --build-arg APP="smp-server" --build-arg APP_PORT="5223" . --push`
 - Then, mirror the official AMD64 image as follows:
 ```
@@ -34,12 +34,12 @@ make
 
 ## Testing performed
 
-[X] Smoke testing - DMs work on macOS, iOS and Android
-[X] Continuity testing - Server config persists across service restarts
-[X] DR testing - Backups restore successfully 
+- [X] Smoke testing - DMs work on macOS, iOS and Android
+- [X] Continuity testing - Server config persists across service restarts
+- [X] DR testing - Backups restore successfully 
 
 ## Roadmap
-[ ] Support for XFTP Server (sending large attachments, will either be a standalone Service or bundled once multi-container services are supported)
-[ ] Server statistics (`log_stats: on` in smp-server.ini)
-[ ] Clearnet support will obviously be a superpower once available
-[ ] Use official multi-architecture Docker Hub once SimpleX team fixes that
+- [ ] Support for XFTP Server (sending large attachments, will either be a standalone Service or bundled once multi-container services are supported)
+- [ ] Server statistics (`log_stats: on` in `smp-server.ini`)
+- [ ] Clearnet support will obviously be a superpower once available
+- [ ] Use official multi-architecture Docker Hub once SimpleX team fixes that
