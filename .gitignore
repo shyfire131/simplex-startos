@@ -4,3 +4,5 @@ scripts/*.js
 .DS_Store
 .vscode/
 docker-images
+/assets/.$explainer-source.drawio.dtmp
+/assets/.$explainer-source.drawio.bkp
