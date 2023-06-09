@@ -1,0 +1,13 @@
+title: SimpleXMQ Usage Instructions
+email: shyfire131@shyfire131.net
+description: >- # this means to ignore newlines until "baseurl:"
+  Usage instructions for the SimplexMQ service wrapper on StartOS.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+twitter_username: shyfire131
+github_username:  shyfire131
+
+# Build settings
+theme: minima
+plugins:
+  - jekyll-feed
