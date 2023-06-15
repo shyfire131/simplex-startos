@@ -6,15 +6,15 @@ SimpleX is possibly the most secure Instant Messenger (IM) client ever developed
 
 Note that SimpleX is beta software.
 
-# What is SimpleXMQ?
-SimpleXMQ is a server that runs the SMP protocol and that can receive direct messages from your contacts. 
+# What is SimpleX?
+SimpleX is a server that runs the SMP protocol and that can receive direct messages from your contacts. 
 
 # How does SimpleX work?
 The primary thing to grok about simplex is that YOU tell your contacts WHERE to send your messages (spoiler: you'll be telling them to send them to your StartOS server). Your SimpleX client then checks for messages at this location and downloads them to your client app on your phone or desktop. 
 
 This means that you have full control over where you tell people to send YOU messages, however you have no control over where THEY want THEIR messages delivered. 
 
-To paraphrase, SimplexMQ is a relay server that puts you in control of all DMs that people send you.
+To paraphrase, SimpleX is a relay server that puts you in control of all DMs that people send you.
 
 Out of the box, a SimpleX setup looks like this (copious amount of detail has been omitted):
 
@@ -41,7 +41,7 @@ However, we want to configure it like this:
 1. Disable the "Use for new connections" setting on all the smp* servers
 1. Tap on "Add Server"
 1. Tap "Scan QR Code"
-1. Scan the Server Address under the Properties page on your StartOS service for SimpleXMQ
+1. Scan the Server Address under the Properties page on your StartOS service for SimpleX
 1. Tap "Test servers" (you might need to tap it twice) then "Save servers"
 1. That's it!  You're ready to message privately using your own Simplex instance on your Start9 server!
 
@@ -52,7 +52,7 @@ For more info on client configuration, see these official docs: [https://simplex
 This is a unique QR code that other people can use to connect to you. 
 
 1. Under the root settings menu (tap profile picutre in top-left), tap on "Your SimpleX address", then tap on "Create SimpleX address"
-1. If this works, you can be certain that your SimplexMQ server is up and running 
+1. If this works, you can be certain that your SimpleX server is up and running 
 
 You can now share this contact address with other users over another trusted channel such as text message, email, etc. 
 

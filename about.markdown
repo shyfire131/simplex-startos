@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-These are installation and usage instructions for the SimpleXMQ service wrapper on StartOS.  
+These are installation and usage instructions for the SimpleX service wrapper on StartOS.  
 
 You can learn more about StartOS here:
 [Start9](https://start9.com)
