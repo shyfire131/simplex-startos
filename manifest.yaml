@@ -56,8 +56,8 @@ volumes:
     type: data
 interfaces:
   main:
-    name: User Interface
-    description: A simple user interface that is expected to display the text "Hello Word"
+    name: SimpleX Interface
+    description: Do not use the URL below. Instead, look in the Properties section to get your SimpleX server address.
     tor-config:
       port-mapping:
         5223: "5223"
