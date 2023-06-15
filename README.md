@@ -27,8 +27,8 @@ Other than that, building the .s9pk is fairly straightforward and doesn't need a
 Clone the project locally:
 
 ```
-git clone git@github.com:shyfire131/startOS-simplexMQ-wrapper.git
-cd startOS-simplexMQ-wrapper
+git clone git@github.com:shyfire131/simplex-startos.git
+cd simplex-startos
 make
 ```
 
