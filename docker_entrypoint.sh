@@ -33,7 +33,7 @@ cat << EOF > /root/start9/stats.yaml
 ---
 version: 2
 data:
-  Server Address:
+  SimpleX Server Address:
     type: string
     value: $SMP_URL
     description: Your SMP Server address, used in client applications.
