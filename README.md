@@ -17,7 +17,7 @@ docker tag simplexchat/smp-server <your-dockerhub-username>/smp-server:amd64
 docker push <your-dockerhub-username>/smp-server:amd64
 ```
 - At this point you need to do some manifest hacking:
-- `docker buildx imagetools create -t shyfire131/smp-server:latest shyfire131/smp-server:arm shyfire131/smp-server:amd6`
+- `docker buildx imagetools create -t shyfire131/smp-server:latest shyfire131/smp-server:arm shyfire131/smp-server:amd64`
 
 You can then reference `shyfire131/smp-server` in your Dockerfile, of course replacing shyfire131 with your own username in all of the above.
 
