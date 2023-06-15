@@ -27,21 +27,23 @@ However, we want to configure it like this:
 
 # Quickstart Guide - iOS/Android
 
+| NOTE: You will first need to be running Orbot on your device.
+
 ## Initial Setup
 1. Download the relevant client by following a link on [https://simplex.chat/](https://simplex.chat/)
-1. Set up your profile, but click on "Don't create address" (don't click "Create SimpleX address, this will create a receive queue for your DMs on SimpleX's servers which is what you don't want)
+1. Set up your profile, but tap on "Don't create address" (don't tap "Create SimpleX address, this will create a receive queue for your DMs on SimpleX's servers which is what you don't want)
 1. Choose how you want to receive notifications
-1. Once in the app, click on your avatar in the top left, then click on "Network & Servers"
+1. Once in the app, tap on your avatar in the top left, then tap on "Network & Servers"
+1. [Optional] On Android, you need to enable "Use SOCKS proxy"
 1. Set "Use .onion hosts" to "Required"
-1. [Optional] On Android, you can enable "Use SOCKS proxy"
-1. Click on "SMP Servers"
+1. Tap on "SMP Servers"
 1. You will see some default servers - smp8, smp9, smp10 for example. These are SimpleX's servers. If you delete all of them, only other Tor users will be able to DM you. 
 1. Disable the "Use for new connections" setting on all the smp* servers
-1. Click on "Add Server"
-1. Click "Scan QR Code"
+1. Tap on "Add Server"
+1. Tap "Scan QR Code"
 1. Scan the Server Address under the Properties page on your StartOS service for SimpleXMQ
-1. Click "Test servers" (you might need to click it twice) then "Save servers"
-1. Click back 
+1. Tap "Test servers" (you might need to tap it twice) then "Save servers"
+1. That's it!  You're ready to message privately using your own Simplex instance on your Start9 server!
 
 
 For more info on client configuration, see these official docs: [https://simplex.chat/docs/guide/app-settings.html](https://simplex.chat/docs/guide/app-settings.html)
@@ -49,7 +51,7 @@ For more info on client configuration, see these official docs: [https://simplex
 
 This is a unique QR code that other people can use to connect to you. 
 
-1. Under the root settings menu, click on "Your SimpleX address", then click on "Create SimpleX address"
+1. Under the root settings menu (tap profile picutre in top-left), tap on "Your SimpleX address", then tap on "Create SimpleX address"
 1. If this works, you can be certain that your SimplexMQ server is up and running 
 
 You can now share this contact address with other users over another trusted channel such as text message, email, etc. 
