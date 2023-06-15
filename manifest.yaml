@@ -3,7 +3,7 @@ title: "SimpleX"
 version: 5.1.0
 release-notes: "Initial release for StartOS"
 license: mit
-wrapper-repo: "https://github.com/shyfire131/startOS-simplexMQ-wrapper"
+wrapper-repo: "https://github.com/shyfire131/simplex-startos"
 upstream-repo: "https://github.com/simplex-chat/simplexmq/"
 support-site: "https://github.com/simplex-chat/simplexmq/issues"
 marketing-site: "https://simplex.chat/"
