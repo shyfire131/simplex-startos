@@ -1,4 +1,4 @@
-simplexmq.s9pk
+simplex.s9pk
 image.tar
 scripts/*.js
 .DS_Store
@@ -6,3 +6,4 @@ scripts/*.js
 docker-images
 /assets/.$explainer-source.drawio.dtmp
 /assets/.$explainer-source.drawio.bkp
+/_site

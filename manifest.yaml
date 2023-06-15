@@ -1,5 +1,5 @@
-id: simplexmq
-title: "SimpleXMQ"
+id: simplex
+title: "SimpleX"
 version: 5.1.0
 release-notes: "Initial release for StartOS"
 license: mit
@@ -12,7 +12,7 @@ build: ["make"]
 description:
   short: An instant messenger without user IDs
   long: |
-    SimpleX is a chat client that radically improves your privacy. SimpleXMQ is the backend server that lets you control how people connect with you. 
+    SimpleX is a chat client that radically improves your privacy. It puts you in control of how people connect with you. 
 assets:
   license: LICENSE
   icon: icon.png

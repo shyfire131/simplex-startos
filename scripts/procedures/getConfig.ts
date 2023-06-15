@@ -8,7 +8,7 @@ export const getConfig: T.ExpectedExports.getConfig = compat.getConfig({
       "description": "The Tor address for SMP Server",
       "type": "pointer",
       "subtype": "package",
-      "package-id": "simplexmq",
+      "package-id": "simplex",
       "target": "tor-address",
       "interface": "main"
     }});

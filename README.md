@@ -1,10 +1,10 @@
-# Wrapper for SimplexMQ 
+# Wrapper for SimpleX 
 
 [<img src="icon.png" alt="SimpleX logo" width="10%"/>](https://simplex.chat/)
 
 SimpleX is a highly secure and sovereign messenger. 
 
-Currently the packaging process is somewhat involved. I was able to get support for ARM builds [merged](https://github.com/simplex-chat/simplexmq/pull/679), however as of 2023-06-07, SimpleX have an [open issue](https://github.com/simplex-chat/simplexmq/issues/740) for  not publishing ARM builds to Docker Hub. All of this is further complicated by the fact that Haskell cross compilation of SimpleXMQ is fairly broken - even using 30GB of RAM on an M1 Pro was not enough resources.
+Currently the packaging process is somewhat involved, because SimpleX do not publish official multi-architecture images on Docker Hub. I was able to get support for ARM builds [merged](https://github.com/simplex-chat/simplexmq/pull/679), however as of 2023-06-07, SimpleX have an [open issue](https://github.com/simplex-chat/simplexmq/issues/740) for  not publishing ARM builds to Docker Hub. All of this is further complicated by the fact that Haskell cross compilation of SimpleXMQ is fairly broken - even using 30GB of RAM on an M1 Pro was not enough resources.
 
 This wrapper therefore uses a multi-architecture Docker image hosted on my personal Docker Hub. This multi-architecture image can be created as follows:
 
