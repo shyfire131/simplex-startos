@@ -12,4 +12,4 @@ You can learn more about StartOS here:
 You can learn more about SimpleX here:
 [SimpleX](https://simplex.chat)
 
-This site is built and maintained by [+shyfire131](https://shyfire131.net)
+This site is built and maintained by [+shyfire131](https://shyfire131.net). If you'd like to support future releases of SimpleX, feel free to send a donation using my [PayNym](https://paynym.is/+shyfire131), +shyfire131. Wallets that support PayNyms are Sparrow, Samourai and Stack Wallet.
