@@ -1,6 +1,6 @@
 id: simplex
 title: "SimpleX Server"
-version: 5.1.0
+version: 5.1.1
 release-notes: "Initial release for StartOS"
 license: mit
 wrapper-repo: "https://github.com/shyfire131/simplex-startos"
