@@ -29,7 +29,7 @@ main:
 health-checks:
   api:
     name: Listening
-    success-message: SMP server is alive and accepting incoming connections
+    success-message: SimpleX Server is alive and accepting incoming connections
     type: docker
     image: main
     system: false
