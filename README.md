@@ -43,3 +43,4 @@ make
 - [ ] Server statistics (`log_stats: on` in `smp-server.ini`)
 - [ ] Clearnet support will obviously be a superpower once available
 - [ ] Use official multi-architecture Docker Hub once SimpleX team fixes that
+- [ ] Configurable message retention period
