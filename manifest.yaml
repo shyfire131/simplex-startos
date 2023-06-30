@@ -1,7 +1,7 @@
 id: simplex
 title: "SimpleX Server"
-version: 5.1.1
-release-notes: "Initial release for StartOS"
+version: 5.1.3
+release-notes: "Upstream update to 5.1.3"
 license: mit
 wrapper-repo: "https://github.com/shyfire131/simplex-startos"
 upstream-repo: "https://github.com/simplex-chat/simplexmq/"
