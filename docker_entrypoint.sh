@@ -20,7 +20,21 @@ if [ ! -f "$confd/smp-server.ini" ]; then
 fi
 
 # Backup store log just in case
-[ -f "$logd/smp-server-store.log" ] && cp "$logd"/smp-server-store.log "$logd"/smp-server-store.log."$(date +'%FT%T')"
+#
+# Uses the UTC (universal) time zone and this
+# format: YYYY-mm-dd'T'HH:MM:SS
+# year, month, day, letter T, hour, minute, second
+#
+# This is the ISO 8601 format without the time zone at the end.
+#
+_file="${logd}/smp-server-store.log"
+if [ -f "${_file}" ]; then
+  _backup_extension="$(date -u '+%Y-%m-%dT%H:%M:%S')"
+  cp -v -p "${_file}" "${_file}.${_backup_extension:-date-failed}"
+  unset -v _backup_extension
+fi
+unset -v _file
+
 
 TOR_ADDRESS=$(sed -n -e 's/^tor-address: \(.*\)/\1/p' /root/start9/config.yaml)
 SERVER_FINGERPRINT=$(cat $confd/fingerprint)
