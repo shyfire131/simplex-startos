@@ -55,7 +55,7 @@ jobs:
         run: |
           git submodule update --init --recursive
           embassy-sdk init
-          make x86
+          make
           mv simplex*s9pk ~/
       - name: Upload .s9pk
         uses: actions/upload-artifact@v3
