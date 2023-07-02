@@ -3,7 +3,7 @@ title: "SimpleX Server"
 version: 5.2.0
 release-notes: "Upstream update to 5.2.0"
 license: mit
-wrapper-repo: "https://github.com/shyfire131/simplex-startos"
+wrapper-repo: "https://github.com/Start9Labs/simplex-startos"
 upstream-repo: "https://github.com/simplex-chat/simplexmq/"
 support-site: "https://github.com/simplex-chat/simplexmq/issues"
 marketing-site: "https://simplex.chat/"
