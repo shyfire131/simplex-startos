@@ -51,7 +51,7 @@ jobs:
           cargo install --git=https://github.com/Start9Labs/md-packer.git --branch=main;
       - name: Build the service package
         run: |
-          git submodule u`pdate --init --recursive
+          git submodule update --init --recursive
           embassy-sdk init
           make
       - name: Generate sha256 checksum
