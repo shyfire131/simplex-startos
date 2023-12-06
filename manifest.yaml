@@ -1,7 +1,7 @@
 id: simplex
 title: "SimpleX Server"
-version: 5.2.0
-release-notes: "Upstream update to 5.2.0"
+version: 5.4.0
+release-notes: "Upstream update to 5.4.0"
 license: mit
 wrapper-repo: "https://github.com/Start9Labs/simplex-startos"
 upstream-repo: "https://github.com/simplex-chat/simplexmq/"
