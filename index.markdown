@@ -25,16 +25,17 @@ However, we want to configure it like this:
 
 ![startos](/assets/startos.png)
 
-# Quickstart Guide - iOS/Android
+# Quickstart Guide - Android
 
-| NOTE: You will first need to be running Orbot on your device.
+| NOTE: You will first need to be running Orbot on your Android device.
+| NOTE: As of December 2023, Orbot is basically broken on iOS, meaning that SimpleX on StartOS is not usable from iOS devices
 
 ## Initial Setup
 1. Download the relevant client by following a link on [https://simplex.chat/](https://simplex.chat/)
 1. Set up your profile, but tap on "Don't create address" (don't tap "Create SimpleX address, this will create a receive queue for your DMs on SimpleX's servers which is what you don't want)
 1. Choose how you want to receive notifications
 1. Once in the app, tap on your avatar in the top left, then tap on "Network & Servers"
-1. [Optional] On Android, you need to enable "Use SOCKS proxy"
+1. Enable "Use SOCKS proxy"
 1. Set "Use .onion hosts" to "Required"
 1. Tap on "SMP Servers"
 1. You will see some default servers - smp8, smp9, smp10 for example. These are SimpleX's servers. If you delete all of them, only other Tor users will be able to DM you. 
@@ -82,6 +83,7 @@ Note that you need to replace `smp://fingerprint=:password@randomhost.onion` wit
 
 
 ## Appendix - random points
+- Since link previews bypass the SOCKS proxy, it's recommend to disable them in Settings -> Privacy & Security -> Chats -> Send link previews
 - Large attachments will be delivered to you (fully encrypted) via SimpleX's servers
 - Even when using the smp* servers, there is no identity and everything happens over Tor
 - Very good description of the SMP protocol: [https://github.com/simplex-chat/simplexmq/blob/stable/protocol/simplex-messaging.md](https://github.com/simplex-chat/simplexmq/blob/stable/protocol/simplex-messaging.md)

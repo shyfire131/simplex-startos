@@ -1,7 +1,7 @@
 title: SimpleX for StartOS Usage Instructions
-email: shyfire131@shyfire131.net
+email: shyfire@shyfire.net
 description: >- # this means to ignore newlines until "baseurl:"
-  Usage instructions for the SimpleX service wrapper on StartOS.
+  Usage instructions for the SimpleX service wrapper on StartOS. Last updated 2023-12-12.
 baseurl: "simplex-startos" 
 url: "https://shyfire131.github.io" 
 twitter_username: shyfire131
