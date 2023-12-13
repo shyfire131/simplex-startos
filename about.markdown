@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-These are installation and usage instructions for the SimpleX service wrapper on StartOS.  Last updated 2023-12-12.
+These are installation and usage instructions for the SimpleX service wrapper on StartOS.  
 
 You can learn more about StartOS here:
 [Start9](https://start9.com)
